@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>BoatBox Helm Display</title>
+<style>
+:root{--bg:#020812;--panel:rgba(7,28,46,.78);--panel2:rgba(11,50,78,.72);--ink:#f4fbff;--muted:#98bed4;--line:rgba(255,255,255,.14);--accent:#2ee6a6;--blue:#22a7ff;--warn:#ffcc66;--danger:#ff5270}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#020812;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}body{background:radial-gradient(circle at 25% 10%,#124d77 0,#051b2d 43%,#020812 100%)}.screen{height:100vh;width:100vw;display:grid;grid-template-columns:1.18fr .82fr;grid-template-rows:auto 1fr auto;gap:16px;padding:18px}.top{grid-column:1/3;display:flex;align-items:center;gap:14px}.brand{flex:1}.brand h1{font-size:42px;letter-spacing:-.06em;margin:0;line-height:.95}.brand p{margin:5px 0 0;color:var(--muted);font-size:16px}.clock{font-size:38px;font-weight:900;letter-spacing:-.05em;text-align:right}.badge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:rgba(255,255,255,.06);border-radius:999px;padding:9px 12px;color:var(--muted);font-size:15px;margin-left:7px}.panel{background:linear-gradient(180deg,var(--panel),rgba(5,20,34,.76));border:1px solid var(--line);border-radius:30px;box-shadow:0 24px 70px rgba(0,0,0,.36);overflow:hidden}.main{padding:26px;display:grid;grid-template-columns:330px 1fr;gap:28px;align-items:center;position:relative}.art{width:330px;height:330px;border-radius:48px;background:radial-gradient(circle at 32% 22%,#38ffd0,#0f85c7 46%,#03101d 100%);box-shadow:0 32px 90px rgba(34,167,255,.26), inset 0 0 0 1px rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.art:before{content:"";position:absolute;width:130%;height:40%;left:-15%;bottom:24%;background:rgba(255,255,255,.13);border-radius:50%;transform:rotate(-7deg)}.art:after{content:"";position:absolute;left:20%;right:20%;bottom:19%;height:5px;background:rgba(46,230,166,.7);border-radius:99px;box-shadow:0 18px 0 rgba(46,230,166,.25),0 -18px 0 rgba(255,255,255,.10)}.note{font-size:126px;z-index:1;text-shadow:0 10px 28px rgba(0,0,0,.35)}.np{min-width:0}.label{color:var(--accent);font-weight:900;letter-spacing:.15em;font-size:14px;text-transform:uppercase}.title{font-size:56px;line-height:1.02;font-weight:1000;letter-spacing:-.065em;margin:12px 0 8px;max-height:174px;overflow:hidden}.artist{font-size:27px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.progress{height:16px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;margin:24px 0 9px}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--blue));border-radius:99px}.times{display:flex;justify-content:space-between;color:var(--muted);font-size:16px}.stateRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px}.state{font-size:22px;font-weight:900;color:var(--accent)}.volbar{width:170px;height:12px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}.volfill{height:100%;width:0;background:linear-gradient(90deg,#74d4ff,#2ee6a6)}.side{display:grid;grid-template-rows:1fr 1fr;gap:16px}.card{padding:22px}.card h2{font-size:24px;letter-spacing:-.04em;margin:0 0 14px}.queueItem{display:grid;grid-template-columns:38px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);min-height:54px}.qnum{font-weight:900;color:var(--accent);text-align:center}.qtitle{font-size:17px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.qsub{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}.phoneGrid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:12px}.phone{border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.055);padding:15px}.phone .big{font-size:34px}.phone b{display:block;font-size:17px;margin-top:5px}.phone p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.25}.url{font-size:20px;font-weight:900;color:var(--accent);margin-top:12px;word-break:break-all}.bottom{grid-column:1/3;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}.waves{height:88px;display:flex;align-items:flex-end;gap:7px;padding:13px 20px}.bar{flex:1;min-width:5px;background:linear-gradient(to top,var(--accent),var(--blue));border-radius:7px 7px 0 0;height:8px;opacity:.9;transition:height .12s}.statusLine{font-size:18px;color:var(--muted)}.statusLine b{color:var(--ink)}.footerPanel{padding:18px 22px;min-width:370px}.bigMute{font-size:18px;font-weight:900;color:var(--warn)}.sleep{color:var(--warn);font-weight:900}@media(max-width:900px){.screen{grid-template-columns:1fr;grid-template-rows:auto auto 1fr auto;gap:12px;padding:12px}.top,.bottom{grid-column:1}.main{grid-template-columns:220px 1fr;padding:18px}.art{width:220px;height:220px;border-radius:36px}.note{font-size:82px}.title{font-size:38px;max-height:120px}.artist{font-size:21px}.side{grid-template-columns:1fr 1fr;grid-template-rows:auto}.clock{font-size:28px}.brand h1{font-size:31px}.footerPanel{min-width:0}.phoneGrid{grid-template-columns:1fr}.waves{height:60px}}
+</style>
+</head>
+<body>
+<div class="screen">
+  <div class="top">
+    <div class="brand"><h1>⛵ BoatBox Helm</h1><p>Main Surface RT display · audio out through 3.5mm AUX jack</p></div>
+    <div><span class="badge" id="net">● …</span><span class="badge" id="source">Source …</span></div>
+    <div class="clock" id="clock">--:--</div>
+  </div>
+
+  <div class="panel main">
+    <div class="art"><div class="note" id="note">♫</div></div>
+    <div class="np">
+      <div class="label">Now playing</div>
+      <div class="title" id="title">BoatBox Ready</div>
+      <div class="artist" id="artist">Use an iPhone to pick music</div>
+      <div class="progress"><div class="fill" id="fill"></div></div>
+      <div class="times"><span id="elapsed">0:00</span><span id="duration">0:00</span></div>
+      <div class="stateRow"><span class="state" id="playState">READY</span><span>Volume</span><div class="volbar"><div class="volfill" id="volfill"></div></div><span id="volText">--%</span></div>
+    </div>
+  </div>
+
+  <div class="side">
+    <div class="panel card">
+      <h2>Up next</h2>
+      <div id="queue"><div class="queueItem"><div class="qnum">—</div><div><div class="qtitle">Queue empty</div><div class="qsub">Pick music from an iPhone</div></div></div></div>
+    </div>
+    <div class="panel card">
+      <h2>iPhone controls</h2>
+      <div class="phoneGrid">
+        <div class="phone"><div class="big">📱</div><b>Captain</b><p>Full control, source, upload, queue.</p></div>
+        <div class="phone"><div class="big">🎛</div><b>Remote</b><p>Passenger remote. Search and pick songs.</p></div>
+      </div>
+      <div class="url">boatbox.lan/ios</div>
+      <p style="color:var(--muted);font-size:14px;margin:8px 0 0">Fallback: 192.168.44.1/ios</p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="panel waves" id="waves"></div>
+    <div class="panel footerPanel">
+      <div class="statusLine"><b>AUX:</b> Surface headphone jack → boat stereo</div>
+      <div class="statusLine" id="battery">Surface battery: checking…</div>
+      <div class="bigMute" id="sleep"></div>
+    </div>
+  </div>
+</div>
+<script>
+var bars=[],playing=false;var waves=document.getElementById('waves');for(var i=0;i<42;i++){var b=document.createElement('div');b.className='bar';waves.appendChild(b);bars.push(b)}
+function xhr(url,cb){var x=new XMLHttpRequest();x.open('GET',url,true);x.onreadystatechange=function(){if(x.readyState===4){try{cb(JSON.parse(x.responseText))}catch(e){}}};x.send()}
+function fmt(s){s=parseInt(s||0,10);return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}
+function clock(){var d=new Date();document.getElementById('clock').textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}
+function qitem(i,s){return '<div class="queueItem"><div class="qnum">'+i+'</div><div><div class="qtitle">'+esc(s.title||s.file||'Unknown')+'</div><div class="qsub">'+esc(s.artist||s.album||'')+'</div></div></div>'}
+function esc(t){return String(t||'').replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function updateStatus(){xhr('/api/status',function(r){if(!r.ok){document.getElementById('title').textContent='Player not ready';document.getElementById('artist').textContent='Check MPD on Surface';playing=false;return}var s=r.status||{},song=r.song||{};playing=s.state==='play';document.getElementById('title').textContent=song.title||song.file||'No track playing';document.getElementById('artist').textContent=song.artist||song.album||'Pick music from iPhone';document.getElementById('playState').textContent=playing?'PLAYING':(s.state==='pause'?'PAUSED':'READY');document.getElementById('note').textContent=playing?'≈':'♫';var dur=parseFloat(s.duration||0),el=parseFloat(s.elapsed||0);document.getElementById('fill').style.width=dur?((el/dur)*100)+'%':'0%';document.getElementById('elapsed').textContent=fmt(el);document.getElementById('duration').textContent=fmt(dur);var v=(s.volume && s.volume!=='-1')?parseInt(s.volume,10):0;document.getElementById('volfill').style.width=v+'%';document.getElementById('volText').textContent=v+'%'})}
+function updateQueue(){xhr('/api/playlist',function(r){var arr=(r&&r.playlist)||[];var html='';for(var i=0;i<Math.min(5,arr.length);i++)html+=qitem(i+1,arr[i]);if(!html)html='<div class="queueItem"><div class="qnum">—</div><div><div class="qtitle">Queue empty</div><div class="qsub">Use iPhone to search and add songs</div></div></div>';document.getElementById('queue').innerHTML=html})}
+function updateSystem(){xhr('/api/system',function(r){if(!r.ok)return;document.getElementById('net').textContent=r.internet?'● Online':'● Offline';document.getElementById('source').textContent=(r.source_mode||'local').replace(/-/g,' ');if(r.surface_battery){document.getElementById('battery').innerHTML='<b>Surface:</b> '+r.surface_battery.capacity+'% '+r.surface_battery.status}else{document.getElementById('battery').innerHTML='<b>Surface:</b> battery unknown'}if(r.sleep_remaining){document.getElementById('sleep').textContent='Sleep timer: '+Math.ceil(r.sleep_remaining/60)+' min'}else{document.getElementById('sleep').textContent=''}})}
+function animate(){for(var i=0;i<bars.length;i++){var base=playing?(Math.random()*76+8):(Math.sin(Date.now()/700+i)*6+12);bars[i].style.height=Math.max(6,base)+'px'}setTimeout(animate,130)}
+clock();updateStatus();updateQueue();updateSystem();animate();setInterval(clock,1000);setInterval(updateStatus,1800);setInterval(updateQueue,3500);setInterval(updateSystem,7000);
+</script>
+</body>
+</html>

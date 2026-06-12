@@ -1,0 +1,14 @@
+{
+  "name": "BoatBox Captain",
+  "short_name": "BoatBox",
+  "description": "Boat music remote for Surface RT AUX audio",
+  "start_url": "/captain",
+  "display": "standalone",
+  "background_color": "#06121f",
+  "theme_color": "#061b2b",
+  "orientation": "portrait",
+  "icons": [
+    {"src": "/static/icons/boatbox-180.png", "sizes": "180x180", "type": "image/png"},
+    {"src": "/static/icons/boatbox-512.png", "sizes": "512x512", "type": "image/png"}
+  ]
+}

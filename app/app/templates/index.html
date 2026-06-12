@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>MusicBox Pro</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#070711;color:white;min-height:100vh}.top{padding:18px 14px;text-align:center;background:linear-gradient(135deg,#1db954,#123);position:sticky;top:0;z-index:5;box-shadow:0 4px 25px rgba(0,0,0,.35)}h1{margin:0;font-size:22px}.sub{font-size:12px;opacity:.8;margin-top:4px}.wrap{max-width:720px;margin:0 auto;padding:14px}.card{background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;margin:12px 0;box-shadow:0 10px 30px rgba(0,0,0,.18)}.now{text-align:center}.art{width:170px;height:170px;margin:10px auto;border-radius:28px;background:radial-gradient(circle at 30% 20%,#1db954,#245,#000);display:flex;align-items:center;justify-content:center;font-size:64px;box-shadow:0 12px 45px rgba(29,185,84,.25)}.title{font-size:20px;font-weight:700;line-height:1.2}.artist{font-size:14px;color:#b8b8c8;margin-top:5px}.row{display:flex;gap:10px;align-items:center}.row>*{flex:1}.buttons{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap}.btn{border:0;border-radius:999px;background:#22263a;color:white;min-height:44px;padding:0 16px;font-size:15px}.btn:active{transform:scale(.96)}.primary{background:#1db954;color:#071007;font-weight:800}.danger{background:#9d2842}.big{width:68px;height:68px;font-size:26px;padding:0}.small{font-size:13px;min-height:36px}.progress{height:8px;background:rgba(255,255,255,.14);border-radius:10px;margin:14px 0;overflow:hidden}.fill{height:100%;width:0;background:#1db954}.time{display:flex;justify-content:space-between;color:#aaa;font-size:12px}.vol{width:100%}.tabs{display:flex;position:sticky;top:72px;background:#080812;z-index:4;border-bottom:1px solid rgba(255,255,255,.08)}.tab{flex:1;text-align:center;padding:12px 3px;color:#999;font-size:13px}.tab.active{color:#1db954;border-bottom:2px solid #1db954}.panel{display:none}.panel.active{display:block}.input{width:100%;background:#151827;color:white;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px;font-size:16px}.item{display:flex;gap:10px;padding:11px;border-bottom:1px solid rgba(255,255,255,.07);align-items:center}.num{width:28px;text-align:right;color:#777}.meta{flex:1;min-width:0}.name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.detail{font-size:12px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pill{display:inline-block;padding:4px 8px;border-radius:999px;background:#151827;color:#aaa;font-size:12px;margin:3px}.ok{color:#1db954}.bad{color:#ff6584}.hint{color:#aaa;font-size:13px;line-height:1.4}.source{border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px;margin:10px 0;background:#111526}.source h3{margin:0 0 5px}.upload{border:2px dashed rgba(255,255,255,.18);border-radius:16px;text-align:center;padding:22px}.footer{font-size:12px;color:#777;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+<div class="top"><h1>🎵 MusicBox Pro</h1><div class="sub">Spotify + offline library + no extra devices</div></div>
+<div class="wrap">
+  <div class="card now">
+    <div class="art">♫</div>
+    <div class="title" id="songTitle">Loading…</div>
+    <div class="artist" id="songArtist">—</div>
+    <div class="progress" onclick="seek(event)"><div class="fill" id="progressFill"></div></div>
+    <div class="time"><span id="elapsed">0:00</span><span id="duration">0:00</span></div>
+    <div class="buttons">
+      <button class="btn" onclick="post('shuffle')">🔀</button>
+      <button class="btn" onclick="post('prev')">⏮</button>
+      <button class="btn primary big" id="playBtn" onclick="togglePlay()">▶</button>
+      <button class="btn" onclick="post('next')">⏭</button>
+      <button class="btn" onclick="post('repeat')">🔁</button>
+    </div>
+    <div class="row" style="margin-top:12px"><span style="flex:0">🔈</span><input class="vol" id="vol" type="range" min="0" max="100" value="50" oninput="setVol(this.value)"><span style="flex:0">🔊</span></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="tab('source',this)">Source</div>
+    <div class="tab" onclick="tab('queue',this)">Queue</div>
+    <div class="tab" onclick="tab('library',this)">Library</div>
+    <div class="tab" onclick="tab('upload',this)">Upload</div>
+    <div class="tab" onclick="tab('system',this)">System</div>
+  </div>
+
+  <div id="source" class="panel active">
+    <div class="card">
+      <div class="source"><h3>📁 Local / Offline Library</h3><p class="hint">Use files stored on the Surface. Works with no internet.</p><button class="btn primary" onclick="source('local')">Use Local Library</button></div>
+      <div class="source"><h3>🟢 Spotify Online</h3><p class="hint">Surface appears as <b>MusicBox-Spotify</b>. Requires internet and usually Spotify Premium.</p><button class="btn primary" onclick="source('spotify-online')">Use Spotify Connect</button></div>
+      <div class="source"><h3>📱 Spotify Offline from iPhone</h3><p class="hint">Play downloaded Spotify tracks on iPhone, then AirPlay to <b>MusicBox AirPlay</b>. Works offline after downloads.</p><button class="btn primary" onclick="source('spotify-offline-airplay')">Use iPhone AirPlay</button></div>
+      <div class="buttons"><a class="btn" href="/speaker" style="text-decoration:none;line-height:44px">Open Speaker Mode</a><a class="btn" href="/display" style="text-decoration:none;line-height:44px">Surface Display</a></div>
+      <p class="hint" id="sourceHelp"></p>
+    </div>
+  </div>
+
+  <div id="queue" class="panel"><div class="card"><div class="buttons"><button class="btn danger" onclick="post('clear',loadQueue)">Clear</button><button class="btn" onclick="post('random')">Random</button><button class="btn" onclick="postJson('crossfade',{seconds:5})">Crossfade 5s</button></div><div id="queueList"></div></div></div>
+
+  <div id="library" class="panel"><div class="card"><input id="search" class="input" placeholder="Search title, artist, album…" oninput="searchLib(this.value)"><div id="results"></div></div></div>
+
+  <div id="upload" class="panel"><div class="card"><div class="upload"><p>Upload MP3, M4A, AAC, FLAC, WAV, OGG, OPUS</p><input type="file" id="files" multiple accept="audio/*"><br><br><button class="btn primary" onclick="upload()">Upload to Surface</button><p id="uploadStatus" class="hint"></p></div><button class="btn" onclick="post('update')">Rescan Library</button></div></div>
+
+  <div id="system" class="panel"><div class="card"><div id="systemInfo">Loading…</div><br><button class="btn" onclick="loadSystem()">Refresh</button></div></div>
+
+  <div class="footer">MusicBox Pro · works online/offline with your existing Surface + iPhones</div>
+</div>
+<script>
+var playing=false,duration=0,lastStatus=null;
+function xhr(method,url,data,cb){var x=new XMLHttpRequest();x.open(method,url,true);if(data){x.setRequestHeader('Content-Type','application/json');}x.onreadystatechange=function(){if(x.readyState===4){var r=null;try{r=JSON.parse(x.responseText);}catch(e){r={ok:false,error:x.responseText};}if(cb)cb(r,x.status);}};x.send(data?JSON.stringify(data):null);}
+function get(ep,cb){xhr('GET','/api/'+ep,null,cb);}function post(ep,cb){xhr('POST','/api/'+ep,{},function(r){if(cb)cb(r);setTimeout(status,250);});}function postJson(ep,obj,cb){xhr('POST','/api/'+ep,obj,function(r){if(cb)cb(r);setTimeout(status,250);});}
+function fmt(s){s=parseInt(s||0,10);return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2);}
+function text(el,v){document.getElementById(el).textContent=v;}
+function status(){get('status',function(r){if(!r.ok){text('songTitle','MPD not ready');text('songArtist',r.error||'');return;}lastStatus=r;var s=r.status||{},song=r.song||{};text('songTitle',song.title||song.file||'No track playing');text('songArtist',song.artist||song.album||'—');playing=s.state==='play';text('playBtn',playing?'⏸':'▶');duration=parseFloat(s.duration||0);var elapsed=parseFloat(s.elapsed||0);document.getElementById('progressFill').style.width=duration?((elapsed/duration)*100)+'%':'0%';text('elapsed',fmt(elapsed));text('duration',fmt(duration));if(s.volume){document.getElementById('vol').value=s.volume;}});}
+function togglePlay(){post(playing?'pause':'play');}
+function setVol(v){postJson('volume',{volume:v});}
+function seek(e){if(!duration)return;var r=e.currentTarget.getBoundingClientRect();var pct=(e.clientX-r.left)/r.width;postJson('seek',{time:pct*duration});}
+function tab(name,el){var ps=document.getElementsByClassName('panel');for(var i=0;i<ps.length;i++)ps[i].className='panel';var ts=document.getElementsByClassName('tab');for(var j=0;j<ts.length;j++)ts[j].className='tab';document.getElementById(name).className='panel active';el.className='tab active';if(name==='queue')loadQueue();if(name==='system')loadSystem();}
+function addItem(parent,main,detail,left,click){var d=document.createElement('div');d.className='item';var n=document.createElement('div');n.className='num';n.textContent=left||'';var m=document.createElement('div');m.className='meta';var a=document.createElement('div');a.className='name';a.textContent=main||'';var b=document.createElement('div');b.className='detail';b.textContent=detail||'';m.appendChild(a);m.appendChild(b);d.appendChild(n);d.appendChild(m);if(click)d.onclick=click;parent.appendChild(d);}
+function loadQueue(){get('playlist',function(r){var q=document.getElementById('queueList');q.innerHTML='';var arr=(r&&r.playlist)||[];if(!arr.length){q.innerHTML='<p class="hint">Queue is empty. Search library and tap songs to add.</p>';return;}for(var i=0;i<arr.length;i++){(function(i,s){addItem(q,s.title||s.file,(s.artist||'')+(s.album?' · '+s.album:''),i+1,function(){postJson('play',{pos:i});});})(i,arr[i]);}});}
+var searchTimer=null;function searchLib(q){clearTimeout(searchTimer);searchTimer=setTimeout(function(){var el=document.getElementById('results');if(q.length<2){el.innerHTML='<p class="hint">Type at least 2 characters.</p>';return;}postJson('search',{query:q},function(r){el.innerHTML='';var arr=(r&&r.results)||[];if(!arr.length){el.innerHTML='<p class="hint">No results.</p>';return;}for(var i=0;i<arr.length;i++){(function(s){addItem(el,s.title||s.file,(s.artist||'')+' · tap to add','+',function(){postJson('add',{uri:s.file},loadQueue);});})(arr[i]);}});},250);}
+function upload(){var input=document.getElementById('files');var files=input.files;if(!files||!files.length){text('uploadStatus','Choose files first.');return;}var fd=new FormData();for(var i=0;i<files.length;i++)fd.append('file',files[i]);var x=new XMLHttpRequest();x.open('POST','/upload',true);x.onreadystatechange=function(){if(x.readyState===4){text('uploadStatus','Upload done. Rescanning library…');post('update');}};x.upload.onprogress=function(e){if(e.lengthComputable){text('uploadStatus','Uploading '+Math.round((e.loaded/e.total)*100)+'%');}};x.send(fd);}
+function source(mode){postJson('source',{mode:mode},function(r){var h=document.getElementById('sourceHelp');if(r.ok){h.innerHTML='Mode set: <b>'+mode+'</b><br>Run/verify: '+(r.commands||[]).join('<br>');}else h.textContent=r.error;loadSystem();});}
+function loadSystem(){get('system',function(r){var el=document.getElementById('systemInfo');if(!r.ok){el.textContent='System API error';return;}var html='';html+='<span class="pill">Internet: <b class="'+(r.internet?'ok':'bad')+'">'+(r.internet?'online':'offline')+'</b></span>';html+='<span class="pill">Network: '+r.network_mode+'</span>';html+='<span class="pill">Source: '+r.source_mode+'</span><br><br>';for(var i=0;i<r.services.length;i++){var s=r.services[i];html+='<div><b>'+s.name+'</b>: <span class="'+(s.ok?'ok':'bad')+'">'+s.text+'</span></div>'; }el.innerHTML=html;});}
+status();loadQueue();loadSystem();setInterval(status,2500);
+</script>
+</body>
+</html>

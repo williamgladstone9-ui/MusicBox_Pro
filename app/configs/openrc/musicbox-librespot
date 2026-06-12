@@ -1,0 +1,14 @@
+#!/sbin/openrc-run
+name="MusicBox Spotify Connect"
+description="librespot Spotify Connect receiver for MusicBox"
+command="/usr/bin/librespot"
+command_args="--name BoatBox-Spotify --device-type speaker --bitrate 160 --enable-volume-normalisation --backend pulseaudio"
+command_background=true
+pidfile="/run/musicbox-librespot.pid"
+output_log="/srv/musicbox/logs/librespot.log"
+error_log="/srv/musicbox/logs/librespot.err"
+
+depend() {
+    need net
+    after dbus
+}

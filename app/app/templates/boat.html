@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="{{ app_name }}">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#061b2b">
+<link rel="manifest" href="/static/manifest.json">
+<link rel="apple-touch-icon" href="/static/icons/boatbox-180.png">
+<title>{{ app_name }}</title>
+<style>
+:root{--bg:#06121f;--bg2:#08243a;--card:#0b2a41;--card2:#0f3855;--ink:#f7fcff;--muted:#9fc0d3;--line:rgba(255,255,255,.13);--accent:#2ee6a6;--accent2:#22a7ff;--warn:#ffcc66;--danger:#ff4f6d;--shadow:0 18px 45px rgba(0,0,0,.33);--r:24px;--safeTop:env(safe-area-inset-top);--safeBot:env(safe-area-inset-bottom)}
+body.sun{--bg:#e8f8ff;--bg2:#b9ecff;--card:rgba(255,255,255,.86);--card2:#ffffff;--ink:#062033;--muted:#466679;--line:rgba(6,32,51,.16);--accent:#008f70;--accent2:#0077d9;--shadow:0 14px 38px rgba(0,75,120,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;overflow-x:hidden}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:radial-gradient(circle at 20% -10%,#145b83 0,#08243a 38%,#06121f 100%);background-color:var(--bg);touch-action:manipulation;-webkit-user-select:none;user-select:none;padding-bottom:calc(82px + var(--safeBot))}body.sun{background:linear-gradient(180deg,#b9ecff 0,#e8f8ff 42%,#d6f0ff 100%)}button,input{font:inherit}.shell{max-width:760px;margin:0 auto}.hero{padding:calc(14px + var(--safeTop)) 16px 10px;position:sticky;top:0;z-index:8;background:linear-gradient(180deg,rgba(6,18,31,.96),rgba(6,18,31,.82));border-bottom:1px solid var(--line);box-shadow:0 8px 24px rgba(0,0,0,.18)}body.sun .hero{background:linear-gradient(180deg,rgba(232,248,255,.96),rgba(232,248,255,.82))}.topline{display:flex;align-items:center;gap:10px}.brand{flex:1;min-width:0}.brand h1{margin:0;font-size:25px;letter-spacing:-.04em}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--muted);border-radius:999px;padding:7px 9px;font-size:12px}.card{margin:14px 14px;background:linear-gradient(180deg,var(--card),rgba(9,33,52,.86));border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}body.sun .card{background:var(--card)}.now{padding:18px;text-align:center;position:relative}.jack{display:inline-flex;align-items:center;gap:7px;background:rgba(46,230,166,.12);border:1px solid rgba(46,230,166,.25);color:var(--accent);padding:8px 11px;border-radius:999px;font-size:12px;margin-bottom:13px}.album{width:188px;height:188px;margin:0 auto 15px;border-radius:36px;background:radial-gradient(circle at 35% 24%,#35ffc3,#0b78b6 48%,#06121f 100%);box-shadow:0 22px 70px rgba(34,167,255,.28),inset 0 0 0 1px rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.album:before{content:"";position:absolute;left:-20%;right:-20%;bottom:25%;height:38%;background:rgba(255,255,255,.13);border-radius:50%;transform:rotate(-8deg)}.album span{font-size:78px;z-index:1;text-shadow:0 5px 18px rgba(0,0,0,.35)}.song{font-size:25px;line-height:1.12;font-weight:900;letter-spacing:-.04em;margin:5px auto 4px;max-width:95%;overflow:hidden;text-overflow:ellipsis}.artist{color:var(--muted);font-size:15px;min-height:22px}.bar{height:12px;border-radius:999px;background:rgba(255,255,255,.12);margin:17px 0 6px;overflow:hidden;position:relative}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:999px}.time{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.controls{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:12px;align-items:center;margin-top:18px}.sideBtns{display:flex;gap:9px;justify-content:center}.btn{border:0;background:#123650;color:var(--ink);min-height:54px;border-radius:18px;padding:0 15px;font-weight:800;box-shadow:inset 0 0 0 1px var(--line)}body.sun .btn{background:#eefaff}.btn:active{transform:scale(.96)}.round{width:58px;padding:0;border-radius:20px;font-size:23px}.play{height:76px;border-radius:26px;background:linear-gradient(135deg,var(--accent),#9dffd7);color:#052116;font-size:33px;box-shadow:0 14px 36px rgba(46,230,166,.27);font-weight:900}.danger{background:linear-gradient(135deg,#ff4f6d,#ff8d99);color:white}.warn{background:linear-gradient(135deg,#ffcc66,#ffe0a0);color:#422800}.blue{background:linear-gradient(135deg,var(--accent2),#75d4ff);color:#031a2b}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 18px 18px}.grid .btn{min-height:48px;font-size:14px}.volwrap{padding:0 18px 18px}.vol{width:100%;height:34px}.section{display:none}.section.active{display:block}.pad{padding:16px}.h2{font-size:18px;font-weight:900;margin:0 0 10px;letter-spacing:-.02em}.hint{font-size:13px;color:var(--muted);line-height:1.38}.input{width:100%;background:rgba(255,255,255,.07);border:1px solid var(--line);color:var(--ink);border-radius:17px;padding:15px;font-size:16px;outline:0}.list{margin-top:10px}.item{display:flex;align-items:center;gap:12px;min-height:62px;border-bottom:1px solid var(--line);padding:10px 2px}.item:active{background:rgba(255,255,255,.06)}.num{width:34px;text-align:center;color:var(--muted);font-weight:800}.meta{flex:1;min-width:0}.name{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}.source{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:20px;padding:14px;margin:11px 0;background:rgba(255,255,255,.055)}.source .icon{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);font-size:25px}.source b{display:block}.source p{margin:2px 0 0;color:var(--muted);font-size:13px}.source button{margin-left:auto;min-height:44px}.pill{display:inline-block;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-size:12px;color:var(--muted);margin:3px}.ok{color:var(--accent)}.bad{color:var(--danger)}.upload{border:2px dashed var(--line);border-radius:22px;padding:24px;text-align:center;background:rgba(255,255,255,.045)}.bottom{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(5,18,31,.94);border-top:1px solid var(--line);padding:8px 10px calc(8px + var(--safeBot));box-shadow:0 -8px 28px rgba(0,0,0,.28)}body.sun .bottom{background:rgba(246,253,255,.94)}.nav{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:5px}.nav button{border:0;background:transparent;color:var(--muted);height:58px;border-radius:18px;font-size:11px;font-weight:800}.nav button span{display:block;font-size:23px;margin-bottom:2px}.nav button.active{background:rgba(46,230,166,.13);color:var(--accent)}.toast{position:fixed;left:16px;right:16px;bottom:calc(92px + var(--safeBot));z-index:40;max-width:728px;margin:0 auto;background:#06121f;border:1px solid var(--line);border-radius:18px;padding:14px;color:white;box-shadow:var(--shadow);display:none}.roleRemote .captainOnly{display:none}.locked .captainGate{filter:blur(1px);opacity:.46;pointer-events:none}.minirow{display:flex;gap:9px;flex-wrap:wrap}.minirow .btn{min-height:44px;font-size:13px;flex:1}.sleep{font-size:13px;color:var(--warn);font-weight:800;margin-top:8px}@media (min-width:650px){.mainGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:0 8px}.album{width:220px;height:220px}.song{font-size:30px}.card{margin:16px}}
+</style>
+</head>
+<body class="locked role{{ app_role|capitalize }}">
+<div class="shell">
+  <div class="hero">
+    <div class="topline">
+      <div class="brand"><h1>⛵ BoatBox</h1><p>{{ app_name }} · Surface RT AUX output</p></div>
+      <span class="chip" id="netChip">● …</span>
+      <button class="chip" onclick="theme()" aria-label="theme">☀︎/☾</button>
+    </div>
+  </div>
+
+  <section id="home" class="section active">
+    <div class="mainGrid">
+      <div class="card now">
+        <div class="jack">🎧 Audio: Surface RT 3.5mm jack → Boat stereo AUX</div>
+        <div class="album"><span id="albumIcon">♫</span></div>
+        <div class="song" id="songTitle">Loading…</div>
+        <div class="artist" id="songArtist">—</div>
+        <div class="bar" onclick="seek(event)"><div class="fill" id="progressFill"></div></div>
+        <div class="time"><span id="elapsed">0:00</span><span id="duration">0:00</span></div>
+        <div class="controls">
+          <div class="sideBtns"><button class="btn round" onclick="post('prev')">⏮</button></div>
+          <button class="btn play" id="playBtn" onclick="togglePlay()">▶</button>
+          <div class="sideBtns"><button class="btn round" onclick="post('next')">⏭</button></div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="grid">
+            <button class="btn danger" onclick="mute()">MUTE</button>
+            <button class="btn" onclick="post('shuffle')">Shuffle</button>
+            <button class="btn" onclick="post('repeat')">Repeat</button>
+            <button class="btn" onclick="volPreset(18)">Dock</button>
+            <button class="btn blue" onclick="volPreset(42)">Cruise</button>
+            <button class="btn warn" onclick="volPreset(72)">Party</button>
+          </div>
+          <div class="volwrap"><input class="vol" id="vol" type="range" min="0" max="100" value="45" oninput="setVol(this.value)"></div>
+        </div>
+        <div class="card pad">
+          <div class="h2">Quick source</div>
+          <div class="minirow captainGate">
+            <button class="btn" onclick="source('local')">📁 Local</button>
+            <button class="btn" onclick="source('spotify-online')">🟢 Spotify</button>
+            <button class="btn" onclick="source('spotify-offline-airplay')">📱 AirPlay</button>
+          </div>
+          <div id="sleepLine" class="sleep"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="search" class="section">
+    <div class="card pad"><div class="h2">Search music</div><input id="searchBox" class="input" placeholder="Song, artist, album…" oninput="searchLib(this.value)"><div id="results" class="list"><p class="hint">Search your offline library on the Surface. Tap a song to add it to the queue.</p></div></div>
+    <div class="card pad"><div class="h2">Upload from iPhone</div><div class="upload"><p class="hint">Add local files to the Surface library.</p><input type="file" id="files" multiple accept="audio/*"><br><br><button class="btn blue" onclick="upload()">Upload Music</button><p id="uploadStatus" class="hint"></p></div></div>
+  </section>
+
+  <section id="queue" class="section">
+    <div class="card pad"><div class="h2">Queue</div><div class="minirow"><button class="btn" onclick="loadQueue()">Refresh</button><button class="btn" onclick="savePlaylist()">Save Mix</button><button class="btn danger" onclick="post('clear',loadQueue)">Clear</button></div><div id="queueList" class="list"></div></div>
+    <div class="card pad"><div class="h2">Saved mixes</div><div id="playlists" class="list"><p class="hint">Loading…</p></div></div>
+  </section>
+
+  <section id="sources" class="section">
+    <div class="card pad captainGate">
+      <div class="h2">Boat audio sources</div>
+      <div class="source"><div class="icon">📁</div><div><b>Offline Library</b><p>Files stored on Surface. No internet needed.</p></div><button class="btn" onclick="source('local')">Use</button></div>
+      <div class="source"><div class="icon">🟢</div><div><b>Spotify Online</b><p>Spotify app → BoatBox-Spotify. Needs internet.</p></div><button class="btn" onclick="source('spotify-online')">Use</button></div>
+      <div class="source"><div class="icon">📱</div><div><b>Spotify Offline / AirPlay</b><p>Downloaded Spotify on iPhone → BoatBox AirPlay.</p></div><button class="btn" onclick="source('spotify-offline-airplay')">Use</button></div>
+      <p class="hint" id="sourceHelp"></p>
+    </div>
+    <div class="card pad"><div class="h2">Sleep timer</div><div class="minirow"><button class="btn" onclick="sleepTimer(15)">15m</button><button class="btn" onclick="sleepTimer(30)">30m</button><button class="btn" onclick="sleepTimer(60)">1h</button><button class="btn danger" onclick="sleepTimer(0)">Off</button></div></div>
+  </section>
+
+  <section id="boat" class="section">
+    <div class="card pad">
+      <div class="h2">Boat status</div><div id="systemInfo">Loading…</div><br>
+      <div class="minirow"><button class="btn" onclick="loadSystem()">Refresh</button><button class="btn captainOnly" id="lockBtn" onclick="unlockCaptain()">Hold to unlock captain controls</button><a class="btn" href="/ios" style="text-align:center;text-decoration:none;line-height:44px">Install iOS Apps</a></div>
+    </div>
+    <div class="card pad"><div class="h2">AUX setup</div><p class="hint">Plug Surface RT headphone jack into the boat stereo AUX input. Set stereo input to AUX. Start with Surface volume around 40%, then increase the boat stereo volume. Use MUTE before unplugging to avoid pops.</p></div>
+  </section>
+</div>
+
+<div class="bottom"><div class="nav">
+  <button class="active" onclick="show('home',this)"><span>🎛</span>Deck</button>
+  <button onclick="show('search',this)"><span>🔎</span>Find</button>
+  <button onclick="show('queue',this)"><span>≡</span>Queue</button>
+  <button onclick="show('sources',this)"><span>⛽</span>Source</button>
+  <button onclick="show('boat',this)"><span>⛵</span>Boat</button>
+</div></div>
+<div id="toast" class="toast"></div>
+<script>
+var APP_ROLE='{{ app_role }}';var playing=false,duration=0,holdTimer=null;
+function $(id){return document.getElementById(id)}
+function toast(msg){var t=$('toast');t.innerHTML=msg;t.style.display='block';clearTimeout(window.toastT);window.toastT=setTimeout(function(){t.style.display='none'},3600)}
+function xhr(method,url,data,cb){var x=new XMLHttpRequest();x.open(method,url,true);if(data){x.setRequestHeader('Content-Type','application/json')}x.onreadystatechange=function(){if(x.readyState===4){var r=null;try{r=JSON.parse(x.responseText)}catch(e){r={ok:false,error:x.responseText}}if(cb)cb(r,x.status)}};x.send(data?JSON.stringify(data):null)}
+function get(ep,cb){xhr('GET','/api/'+ep,null,cb)}function post(ep,cb){xhr('POST','/api/'+ep,{},function(r){if(cb)cb(r);setTimeout(status,250)})}function postJson(ep,obj,cb){xhr('POST','/api/'+ep,obj,function(r){if(cb)cb(r);setTimeout(status,250)})}
+function fmt(s){s=parseInt(s||0,10);return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}
+function show(id,btn){var s=document.getElementsByClassName('section');for(var i=0;i<s.length;i++)s[i].className='section';$(id).className='section active';var b=document.querySelectorAll('.nav button');for(var j=0;j<b.length;j++)b[j].className='';btn.className='active';if(id==='queue'){loadQueue();loadPlaylists()}if(id==='boat'){loadSystem()}}
+function status(){get('status',function(r){if(!r.ok){$('songTitle').textContent='Surface player not ready';$('songArtist').textContent=r.error||'Check MPD';return}var s=r.status||{},song=r.song||{};$('songTitle').textContent=song.title||song.file||'No track playing';$('songArtist').textContent=song.artist||song.album||'Ready';playing=s.state==='play';$('playBtn').textContent=playing?'⏸':'▶';duration=parseFloat(s.duration||0);var e=parseFloat(s.elapsed||0);$('progressFill').style.width=duration?((e/duration)*100)+'%':'0%';$('elapsed').textContent=fmt(e);$('duration').textContent=fmt(duration);if(s.volume!==undefined && s.volume!=='-1')$('vol').value=s.volume;$('albumIcon').textContent=playing?'≈':'♫'})}
+function togglePlay(){post(playing?'pause':'play')}function setVol(v){postJson('volume',{volume:v})}function volPreset(v){$('vol').value=v;setVol(v);toast('Volume set to '+v+'%')}function mute(){postJson('mute',{action:'toggle'},function(r){toast(r.muted?'Muted':'Unmuted')})}
+function seek(e){if(!duration)return;var r=e.currentTarget.getBoundingClientRect();postJson('seek',{time:((e.clientX-r.left)/r.width)*duration})}
+function source(m){postJson('source',{mode:m},function(r){if(r.ok){$('sourceHelp').innerHTML='Mode: <b>'+m+'</b><br>'+(r.commands||[]).join('<br>');toast('Source set: '+m)}else toast(r.error||'source error');loadSystem()})}
+function sleepTimer(m){postJson('sleep',{minutes:m},function(r){toast(m?('Sleep timer: '+m+' minutes'):'Sleep timer off');loadSystem()})}
+function updateSleep(seconds){if(!seconds){$('sleepLine').textContent='';return}var m=Math.ceil(seconds/60);$('sleepLine').textContent='Sleep timer: '+m+' min remaining'}
+function addItem(parent,main,detail,left,click){var d=document.createElement('div');d.className='item';var n=document.createElement('div');n.className='num';n.textContent=left||'';var m=document.createElement('div');m.className='meta';var a=document.createElement('div');a.className='name';a.textContent=main||'';var b=document.createElement('div');b.className='sub';b.textContent=detail||'';m.appendChild(a);m.appendChild(b);d.appendChild(n);d.appendChild(m);if(click)d.onclick=click;parent.appendChild(d)}
+function loadQueue(){get('playlist',function(r){var q=$('queueList');q.innerHTML='';var arr=(r&&r.playlist)||[];if(!arr.length){q.innerHTML='<p class="hint">Queue is empty. Search and tap songs to add.</p>';return}for(var i=0;i<arr.length;i++){(function(i,s){addItem(q,s.title||s.file,(s.artist||'')+(s.album?' · '+s.album:''),i+1,function(){postJson('play',{pos:i})})})(i,arr[i])}})}
+var st=null;function searchLib(q){clearTimeout(st);st=setTimeout(function(){var el=$('results');if(q.length<2){el.innerHTML='<p class="hint">Type at least 2 characters.</p>';return}postJson('search',{query:q},function(r){el.innerHTML='';var arr=(r&&r.results)||[];if(!arr.length){el.innerHTML='<p class="hint">No results.</p>';return}for(var i=0;i<arr.length;i++){(function(s){addItem(el,s.title||s.file,(s.artist||'')+' · tap to add','＋',function(){postJson('add',{uri:s.file},function(){toast('Added to queue');loadQueue()})})})(arr[i])}})},250)}
+function upload(){var input=$('files'),files=input.files;if(!files||!files.length){toast('Choose files first');return}var fd=new FormData();for(var i=0;i<files.length;i++)fd.append('file',files[i]);var x=new XMLHttpRequest();x.open('POST','/upload',true);x.upload.onprogress=function(e){if(e.lengthComputable)$('uploadStatus').textContent='Uploading '+Math.round((e.loaded/e.total)*100)+'%'};x.onreadystatechange=function(){if(x.readyState===4){$('uploadStatus').textContent='Upload complete. Library updating…';post('update');toast('Upload complete')}};x.send(fd)}
+function loadPlaylists(){get('playlists',function(r){var el=$('playlists');el.innerHTML='';var arr=(r&&r.playlists)||[];if(!arr.length){el.innerHTML='<p class="hint">No saved mixes yet.</p>';return}for(var i=0;i<arr.length;i++){(function(p){addItem(el,p.playlist,'tap to load','▶',function(){postJson('playlist/load',{name:p.playlist},function(){toast('Loaded '+p.playlist);loadQueue()})})})(arr[i])}})}
+function savePlaylist(){var name=prompt('Save current queue as:', 'Boat_Mix');if(!name)return;postJson('playlist/save',{name:name},function(r){toast(r.ok?'Saved '+r.name:(r.error||'Could not save'));loadPlaylists()})}
+function loadSystem(){get('system',function(r){if(!r.ok)return;var html='';html+='<span class="pill">Internet: <b class="'+(r.internet?'ok':'bad')+'">'+(r.internet?'online':'offline')+'</b></span>';html+='<span class="pill">Source: '+r.source_mode+'</span>';html+='<span class="pill">Network: '+r.network_mode+'</span>';if(r.surface_battery){html+='<span class="pill">Surface: '+r.surface_battery.capacity+'% '+r.surface_battery.status+'</span>'}html+='<br><br><b>Audio:</b> '+r.audio_output+'<br>';for(var i=0;i<r.services.length;i++){var s=r.services[i];html+='<div><b>'+s.name+'</b>: <span class="'+(s.ok?'ok':'bad')+'">'+s.text+'</span></div>'}$('systemInfo').innerHTML=html;$('netChip').innerHTML=r.internet?'● Online':'● Offline';updateSleep(r.sleep_remaining)})}
+function theme(){if(document.body.className.indexOf('sun')>=0){document.body.className=document.body.className.replace(' sun','');localStorage.setItem('boatbox_theme','night')}else{document.body.className+=' sun';localStorage.setItem('boatbox_theme','sun')}}
+function unlockCaptain(){var b=$('lockBtn');if(!b._down){b._down=true;b.textContent='Keep holding…';holdTimer=setTimeout(function(){document.body.className=document.body.className.replace('locked','');b.textContent='Captain controls unlocked';toast('Captain controls unlocked')},1400);setTimeout(function(){if(b._down){b._down=false}},1500)}else{clearTimeout(holdTimer);b._down=false;b.textContent='Hold to unlock captain controls'}}
+if(localStorage.getItem('boatbox_theme')==='sun')document.body.className+=' sun';if(APP_ROLE==='remote')document.body.className=document.body.className.replace('locked','');
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('/static/sw.js')}catch(e){}}
+status();loadSystem();loadQueue();setInterval(status,2300);setInterval(loadSystem,12000);
+</script>
+</body>
+</html>
