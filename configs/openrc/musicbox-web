@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+name="MusicBox Web"
+description="MusicBox Flask web interface"
+command="/usr/bin/python3"
+command_args="/srv/musicbox/app/app.py"
+command_background=true
+pidfile="/run/musicbox-web.pid"
+output_log="/srv/musicbox/logs/web.log"
+error_log="/srv/musicbox/logs/web.err"
+directory="/srv/musicbox/app"
+command_user="music:music"
+
+depend() {
+    need net
+    after mpd
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"><title>MusicBox Speaker</title>
+<style>
+body{margin:0;background:#050507;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center}.box{width:92%;max-width:430px;text-align:center}.orb{width:190px;height:190px;border-radius:50%;border:4px solid #1db954;background:radial-gradient(circle,#173,#071);color:#1db954;font-size:64px;margin:20px auto;display:flex;align-items:center;justify-content:center;box-shadow:0 0 55px rgba(29,185,84,.25)}button{border:0;border-radius:999px;background:#1db954;color:#061006;font-weight:800;min-height:48px;padding:0 22px;font-size:16px;margin:6px}.secondary{background:#202436;color:white}.hint{font-size:13px;color:#aaa;line-height:1.45}.card{background:rgba(255,255,255,.06);border-radius:18px;padding:14px;margin:12px 0}.range{width:100%}.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#171a26;color:#aaa;font-size:12px;margin:3px}a{color:#1db954}
+</style>
+</head>
+<body><div class="box">
+<h1>📱 Speaker Mode</h1>
+<p class="hint">This iPhone becomes a fill speaker. It is loose-sync, not perfect-sync.</p>
+<div class="orb" id="orb">▶</div>
+<div>
+<button onclick="play()" id="playBtn">Start Speaker</button>
+<button class="secondary" onclick="stop()">Stop</button>
+</div>
+<div class="card">
+  <b>Stream source</b><br>
+  <button class="secondary" onclick="setStream('/stream.mp3')">Local MPD</button>
+  <button class="secondary" onclick="setStream('/live.mp3')">Live Mix / Spotify / AirPlay</button>
+  <p class="hint">Use Live Mix for Spotify Connect or AirPlay if Icecast live streaming is enabled.</p>
+</div>
+<div class="card">
+  <b>Start delay</b><br><span id="delayLabel" class="pill">0 ms</span><br>
+  <input class="range" id="delay" type="range" min="0" max="3000" step="100" value="0" oninput="saveDelay(this.value)">
+  <p class="hint">If this phone starts ahead of another phone, increase delay. Negative delay is impossible in a browser stream.</p>
+</div>
+<p id="status" class="hint">Tap Start. For best results disable Auto-Lock while using speaker mode.</p>
+<audio id="audio" preload="none" playsinline webkit-playsinline><source id="src" src="/live.mp3" type="audio/mpeg"></audio>
+<p><a href="/">← Remote</a></p>
+</div>
+<script>
+var stream=localStorage.getItem('musicbox_stream')||'/live.mp3';var delay=parseInt(localStorage.getItem('musicbox_delay')||'0',10);var audio=document.getElementById('audio');var src=document.getElementById('src');src.src=stream;document.getElementById('delay').value=delay;document.getElementById('delayLabel').textContent=delay+' ms';
+function saveDelay(v){delay=parseInt(v,10);localStorage.setItem('musicbox_delay',delay);document.getElementById('delayLabel').textContent=delay+' ms';}
+function setStream(s){stream=s;localStorage.setItem('musicbox_stream',s);src.src=s+'?t='+(new Date().getTime());audio.load();document.getElementById('status').textContent='Stream set to '+s+'. Tap Start.';}
+function play(){document.getElementById('status').textContent='Starting in '+delay+' ms…';setTimeout(function(){audio.play();document.getElementById('orb').textContent='🔊';document.getElementById('playBtn').textContent='Restart Speaker';document.getElementById('status').textContent='Playing '+stream;},delay);}
+function stop(){audio.pause();audio.currentTime=0;document.getElementById('orb').textContent='▶';document.getElementById('status').textContent='Stopped';}
+</script>
+</body></html>

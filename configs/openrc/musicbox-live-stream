@@ -1,0 +1,13 @@
+#!/sbin/openrc-run
+name="MusicBox Live Stream"
+description="Capture MusicBox mixed audio and send it to Icecast for iPhone speaker mode"
+command="/srv/musicbox/scripts/start-live-stream.sh"
+command_background=true
+pidfile="/run/musicbox-live-stream.pid"
+output_log="/srv/musicbox/logs/live-stream.log"
+error_log="/srv/musicbox/logs/live-stream.err"
+
+depend() {
+    need net
+    after icecast
+}
